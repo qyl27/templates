@@ -1,5 +1,7 @@
 name: Sync
 on:
+  schedule:
+    - cron: '0 * * * *'
   workflow_dispatch:
 concurrency:
   group: sync
@@ -12,11 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: true
-          package_json_file: web/package.json
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
